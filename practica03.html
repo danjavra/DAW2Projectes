@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="practica03.css" rel="stylesheet" type="text/css"/>
+        
+    </head>
+    <body onload="mostraArray();" >
+        
+        <div id="infoArray"> </div>
+        <br>
+        
+        <div onclick="showFirstLastnumber();" style="border:1px solid black; display: inline-block; padding: 1px"> MOSTRAR EL NUMERO INICIAL Y EL FINAL </div>
+        <br>
+        
+        <input type="number" id="numero"/> 
+        <br>
+        <div onclick="addLastnumber();" style="border:1px solid black; display: inline-block; padding: 1px"> AÑADIR NUMERO AL FINAL </div>
+        <br>
+        <div onclick="addFirstnumber();" style="border:1px solid black; display: inline-block; padding: 1px"> AÑADIR NUMERO AL PRINCIPIO </div>
+        <br>
+        <div onclick="delNumberPosition();" style="border:1px solid black; display: inline-block; padding: 1px" > BORRAR NUMERO SEGÚN POSICIÓN</div>
+        <br>
+        <div onclick="delNumberValue();" style="border:1px solid black; display: inline-block; padding: 1px" > BORRAR NUMERO SEGÚN VALOR</div>
+        <br>
+        <script src="practica03.js" type="text/javascript"></script>
+    </body>
+</html>
