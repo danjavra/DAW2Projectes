@@ -14,17 +14,13 @@ function mostrarArray(){
     }
 }
 
-function calcularVelocitat(){
-    for(k=0; k<Caracol.length;k++){
-        Caracol[k].punts= Math.floor(Math.random() * (Caracol[k].velocitat - 0));
-    }
-    
+function sprint(){
+    var sprint= document.getElementById("infoSprint");
+   for(k=0; k<Caracol.length;k++){
+      Caracol[k].velocitat = Math.floor(Math.random() * 11) + 10;
+      Caracol[k].distancia = Caracol[k].velocitat++;
+      sprint.innerHTML+="<table class='col-sm-6'><tr class='col-xs-12' style='background-color:#c0c0c0; border:5px solid white;'><td class='col-sm-1'>"+(k+1)+"º "+"</td><td class='col-sm-1'>"+"Nombre: "+Caracol[k].nombre+"</td><td class='col-sm-1'>"+"Total: "+Caracol[k].distancia+"</td><td class='col-sm-1'>"+"Sprint: 1"+"</td></tr></table>";
+   } 
 }
-
-function calcularDistancia(){
-     for(k=0; k<Caracol.length;k++){
-        Caracol[k].distancia= Caracol[k].punts + Caracol[k].velocitat;
-    }
-}
-
      mostrarArray();   
+     sprint();
