@@ -1,4 +1,5 @@
 var i=0;
+var numcarrera=0;
 var Caracol = [
     {nombre:"Speed Cargol", punts:0,velocitat:10,distancia:0},
     {nombre:"Cargolet", punts:0,velocitat:10,distancia:0 },
@@ -7,8 +8,9 @@ var Caracol = [
 ];
 
 function iniciarCarrera(){
+    numcarrera++;
     var carrera = document.getElementById("infoCarrera");
-    carrera.innerHTML+="<div class='row' id='infoSprint'><div class='col-xs-10' style='background-color: #8a6d3b; text-align: center' >SPRINT 2</div><div class='col-xs-2' style='background-color: #337ab7; text-align: center' onclick='sprint();' >!RUN¡</div>"
+    carrera.innerHTML+="<div class='col-xs-10' style='background-color: #8a6d3b; text-align: center' >Carrera "+numcarrera+"</div><div class='col-xs-2' style='background-color: #337ab7; text-align: center' onclick='sprint();' >!RUN¡</div>"
     
 }
 
@@ -29,7 +31,7 @@ function sprint(){
    sprint.innerHTML+="<div class='col-xs-12' style='background-color: #8a6d3b; text-align: center'>SPRINT "+i+"</div>";
    
     for(k=0; k<Caracol.length;k++){
-      Caracol[k].velocitat += Math.floor(Math.random() * 11) + 10;
+      Caracol[k].velocitat += Math.floor(Math.random() * (Caracol[k].velocitat + Caracol[k].punts)) + 1;
       Caracol[k].distancia += Caracol[k].velocitat++;
       sprint.innerHTML+="<table class='col-sm-6'><tr class='col-xs-12' style='background-color:#c0c0c0; border:5px solid white;'><td class='col-sm-1'>"+(k+1)+"º "+"</td><td class='col-sm-1'>"+"Nombre: "+Caracol[k].nombre+"</td><td class='col-sm-1'>"+"Total: "+Caracol[k].distancia+"</td><td class='col-sm-1'>"+"Sprint: "+i+"</td></tr></table>";
    } 
