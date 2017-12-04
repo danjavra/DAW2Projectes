@@ -6,16 +6,24 @@ var Caracol = [
     {nombre:"Slow Cargol", punts:0,velocitat:10,distancia:0 },
     {nombre:"Gran Cargol", punts:0,velocitat:10,distancia:0 }
 ];
+var Mascota = [
+    {nombre:"Tortuga", slogan: "Cowabunga"},
+    {nombre:"Pirata", slogan: "Yahr!"},
+    {nombre:"Chicho", slogan: "3Puntos!"},
+    {nombre:"Pokemon", slogan: "Catch Em!"}
+  
+];
 var distanciaMax1=0,distanciaMax2=0,distanciaMax3=0,distanciaMax4=0;
 Carreras = [];
  
 var info= document.getElementById("infoArray");
- 
+var sprint= document.getElementById("infoSprint");
 function mostrarArray(){
 
     for(k=0; k<4;k++){
         info.innerHTML+="<div class='col-xs-12 col-sm-6' style='background-color:#c0c0c0'>"+
-                "<span>"+(k+1)+"º "+Caracol[k].nombre+" Punts: "+Caracol[k].punts+" Velocitat: "+Caracol[k].velocitat+"</span></div>";
+                "<span>"+(k+1)+"º "+Caracol[k].nombre+" Punts: "+Caracol[k].punts+" Velocitat: "+Caracol[k].velocitat+"</span>"+
+                "<span>Mascota ("+Mascota[k].nombre+": "+Mascota[k].slogan+" )</span></div>"; 
     }
 }
 
@@ -49,7 +57,7 @@ function prints(caracol, i) {
 
 
 function sprint(){
-    var sprint= document.getElementById("infoSprint");
+    
     
     Sprints = [{Caracol}];
     i++;

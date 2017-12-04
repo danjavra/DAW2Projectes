@@ -1,7 +1,7 @@
 var Caracol = [
     
-    {nombre:"Speed Cargol", punts:0,velocitat:10,distancia:0 },
-    {nombre:"Cargolet", punts:0,velocitat:10,distancia:0 },
+    {nombre:"Speed Cargol", punts:0,velocitat:10,distancia:0,mascota:'' },
+    {nombre:"Cargolet", punts:0,velocitat:10,distancia:0,mascota:'' },
     {nombre:"Slow Cargol", punts:0,velocitat:10,distancia:0 },
     {nombre:"Gran Cargol", punts:0,velocitat:10,distancia:0 }
 ];
@@ -13,6 +13,29 @@ var Mascota = [
     {nombre:"Pokemon", slogan: "Catch Em!"}
   
 ];
+function Caraco(){
+    this.nombre;
+    this.punts;
+    this.velocitat;
+    this.distancia;
+    this.mascota;
+    this.mostrasDatos=function(){
+        
+    }
+}
+
+var Caracol=[new Caraco(), new Caraco(),new Caraco(), new Caraco()]
+
+function Mascota(nom,slog){
+    this.nombre=nom;
+    this.slogan=slog;
+}
+var mascota1=new Mascota();
+mascota1.nombre="blabla";
+mascota1.slogan='bleble';
+
+Caracol[0].mascota=mascota1;
+Caracol[1].mascota=new Mascota('nom mascota','sloghan mascota');
 
 var distanciaMax1=0,distanciaMax2=0,distanciaMax3=0,distanciaMax4=0;
 Carreras = [];
