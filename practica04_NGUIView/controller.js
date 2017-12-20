@@ -1,6 +1,6 @@
 app.controller('topController', ['$scope',
  function ($scope) {
- $scope.titol = "EL CAP";
+ $scope.titol = "LISTAME";
  }]);
 app.controller('midController', ['$scope',
  function ($scope) {
