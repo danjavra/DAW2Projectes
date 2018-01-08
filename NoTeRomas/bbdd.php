@@ -49,17 +49,26 @@ function selectTypeUser($username){
     return $tipo;
 }
 
-function totalActividades(){
+function actividades($pos){
     $conectar = conectar("gym");
-    $select = "select * from activity ";
+    $select = "select * from activity limit ".$pos.", 5";
     $resultado = mysqli_query($conectar, $select);
     desconectar($conectar);
     return $resultado;
 }
 
-function socios(){
+function totalActividades(){
     $conectar = conectar("gym");
-    $select = "select * from member ";
+    $select = "select * from activity";
+    $resultado = mysqli_query($conectar, $select);
+    $rows = mysqli_num_rows($resultado);
+    desconectar($conectar);
+    return $rows;
+}
+
+function socios($pos){
+    $conectar = conectar("gym");
+    $select = "select * from member limit ".$pos.", 10";
     $resultado = mysqli_query($conectar, $select);
     desconectar($conectar);
     return $resultado;
@@ -67,10 +76,9 @@ function socios(){
 
 function totalSocios(){
     $conectar = conectar("gym");
-    $select = "select count(*) from member";
+    $select = "select * from member";
     $resultado = mysqli_query($conectar, $select);
-    $fila = mysqli_fetch_array($resultado);
-    extract($fila);
+    $rows = mysqli_num_rows($resultado);
     desconectar($conectar);
-    return $total_socios;
+    return $rows;
 }

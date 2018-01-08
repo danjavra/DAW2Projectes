@@ -6,7 +6,7 @@
 
         <meta charset="UTF-8">
         <title>Stucom GYM</title>
-        
+        <style>a{margin: 0 10px}</style>
     </head>
     <body>
          <h1>Página del Administrador</h1>
@@ -17,39 +17,48 @@
         <?php
         require_once 'bbdd.php';
         session_start();
-        $usuario = $_SESSION["user"];
         $posicion = 0;
-        
-        $date = date('Y-m-d H:i:s');
 
         if (isset($_GET["posicion"])) {
             $posicion = $_GET["posicion"];
         } else {
             $posicion = 0;
         }
-        $socios = socios($posicion,10);
+        $socios = socios($posicion);
         $total = totalSocios();
-            while($fila = mysqli_fetch_array($socios)){
-                extract($fila);
-                echo"<tr><td>$idmember</td><td>$name</td><td>$age</td><td>";
-            }
-            if($posicion>0){
-            echo "<a href='admin.php?posicion=".($posicion - 10)."'>prev</a><br>";
+        
+        
+        while($fila = mysqli_fetch_array($socios)){
+            extract($fila);
+            echo"<tr><td>$idmember</td><td>$name</td><td>$age</td><td>";
+        }
+            
+          
+        ?>
+            
+            </table>
+            <br>
+            <div>
+                <?php
+                
+                        if($posicion>0){  
+            echo "<a href='admin.php?posicion=".($posicion - 10)."'>prev</a>";
         }
         
         if($posicion + 10 <=$total){
-              echo "Mostrando " . ($posicion + 1) . " al " . ($posicion + 10) . " de $total ";
+            echo "Mostrando " . ($posicion + 1) . " al " . ($posicion + 10) . " de $total ";
         }
         else {
-        echo "Mostrando " . ($posicion + 1) . " al $total de $total";
+            echo "Mostrando " . ($posicion + 1) . " al $total de $total";
         }
         
         if ($posicion + 10 < $total) {
-        echo "<a href='admin.php?posicion=" .($posicion + 10)."'>next</a>";
-}
-
-        ?>
-             </table>
+            echo "<a href='admin.php?posicion=" .($posicion + 10)."'>next</a>";
+        }
+                
+                ?>    
+            </div>
+             
          <p><a href="index.php">Página de inicio</a></p>
     </body>
 </html>
