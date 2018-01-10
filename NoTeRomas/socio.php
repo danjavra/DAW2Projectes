@@ -20,6 +20,7 @@
         <?php
         require_once 'bbdd.php';
         $posicion = 0;
+        $idmember = getIdByName($usuario);
 
         if (isset($_GET["posicion"])) {
             $posicion = $_GET["posicion"];
@@ -57,7 +58,23 @@
                 ?>    
             </div>
              <br>
-           
+             <h2>Inscribirse a una actividad</h2>
+           <form action="" method="post">
+               <p><input type="hidden" name="idmember" value="<?php echo $idmember ?>"></p>
+                       <p>Actividad:</p>
+                       <select type="select" name="activity">
+                   <?php  $actividades = actividades();
+  var_dump($total);
+                while($fila = mysqli_fetch_array($actividades)){
+                extract($fila);
+                echo" <option>$name</opcion>";
+            } ?>
+                   </select>
+            <p>Edad: <input type="number" name="age"></p>
+            <!--Tipo de Usuario (1 = "User", 0 = "Admin") añadida manualmente a la bbdd--> 
+            <p><input type="hidden" name="tipo" value="1"></p> 
+            <p><input type="submit" name="reg" value="Apuntarse"</p>
+        </form>
          <br>
          <h4>Coste mensual del total de las actividades:</h4>
     </body>

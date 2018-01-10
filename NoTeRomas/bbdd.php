@@ -57,6 +57,16 @@ function actividades($pos){
     return $resultado;
 }
 
+function actividadesDispo(){
+    $conectar = conectar("gym");
+    $select = "select * from activity";
+    $resultado = mysqli_query($conectar, $select);
+    desconectar($conectar);
+    return $resultado;
+}
+
+
+
 function totalActividades(){
     $conectar = conectar("gym");
     $select = "select * from activity";
@@ -81,4 +91,14 @@ function totalSocios(){
     $rows = mysqli_num_rows($resultado);
     desconectar($conectar);
     return $rows;
+}
+
+function getIdByName($usuario){
+    $conectar = conectar("gym");
+    $select = "select idmember from member where name='$usuario'";
+    $resultado = mysqli_query($conectar, $select);
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    desconectar($conectar);
+    return $idmember;
 }
