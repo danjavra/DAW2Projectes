@@ -39,6 +39,19 @@ function insertUser($name, $pass, $age, $type) {
     return $msg;
 }
 
+function apuntarActividad($activity, $date, $idmember){
+    $conexion = conectar();
+    $insert = "insert into enroll values ('$activity','$date', $idmember)";
+    if (mysqli_query($conexion, $insert)) {
+        $msg = "ok";
+    } else {
+        echo mysqli_error($conexion);
+        $msg = "error";
+    }
+    desconectar($conexion);
+    return $msg;
+}
+
 function selectTypeUser($username){
     $conectar = conectar("gym");
     $select = "select tipo from member where name='$username'";
@@ -57,9 +70,9 @@ function actividades($pos){
     return $resultado;
 }
 
-function actividadesDispo(){
+function actividadesDispo($usuario){
     $conectar = conectar("gym");
-    $select = "select * from activity";
+    $select = "select name from activity where name not in (select activity from enroll where member='$usuario')";
     $resultado = mysqli_query($conectar, $select);
     desconectar($conectar);
     return $resultado;
@@ -102,3 +115,4 @@ function getIdByName($usuario){
     desconectar($conectar);
     return $idmember;
 }
+

@@ -21,6 +21,7 @@
         require_once 'bbdd.php';
         $posicion = 0;
         $idmember = getIdByName($usuario);
+        $date = date('Y-m-d H:i:s');
 
         if (isset($_GET["posicion"])) {
             $posicion = $_GET["posicion"];
@@ -60,22 +61,35 @@
              <br>
              <h2>Inscribirse a una actividad</h2>
            <form action="" method="post">
-               <p><input type="hidden" name="idmember" value="<?php echo $idmember ?>"></p>
+              
+               <!-- <p><input type="hidden" name="idmember" value="<?php echo $idmember ?>"></p> -->
                        <p>Actividad:</p>
                        <select type="select" name="activity">
-                   <?php  $actividades = actividades();
-  var_dump($total);
-                while($fila = mysqli_fetch_array($actividades)){
+                   <?php  $actividadesDisp = actividadesDispo($usuario);
+                
+                while($fila = mysqli_fetch_array($actividadesDisp)){
                 extract($fila);
-                echo" <option>$name</opcion>";
+                echo" <option value='$name'>$name</opcion>";
             } ?>
                    </select>
-            <p>Edad: <input type="number" name="age"></p>
-            <!--Tipo de Usuario (1 = "User", 0 = "Admin") añadida manualmente a la bbdd--> 
-            <p><input type="hidden" name="tipo" value="1"></p> 
-            <p><input type="submit" name="reg" value="Apuntarse"</p>
+            
+            <p><input type="hidden" name="date" value="<?php echo $date ?>"></p> 
+            <p><input type="submit" name="enroll" value="Apuntarse"</p>
         </form>
+              <?php
+      
+        if (isset($_POST["enroll"])) {
+            require_once 'bbdd.php';
+            $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$idmember);
+            if ($resultado == "ok") {
+                echo "<p>Usuario inscrito en la actividad.</p>";
+            } else {
+                echo $msg;
+            }
+        }
+        ?>
          <br>
+         <?php echo $idmember ?>
          <h4>Coste mensual del total de las actividades:</h4>
     </body>
 </html>
