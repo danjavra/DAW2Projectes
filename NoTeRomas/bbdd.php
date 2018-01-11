@@ -41,7 +41,7 @@ function insertUser($name, $pass, $age, $type) {
 
 function apuntarActividad($activity, $date, $idmember){
     $conexion = conectar();
-    $insert = "insert into enroll values ('$activity','$date', $idmember)";
+    $insert = "insert into enroll values ($idmember,'$activity','$date' )";
     if (mysqli_query($conexion, $insert)) {
         $msg = "ok";
     } else {
@@ -70,6 +70,7 @@ function actividades($pos){
     return $resultado;
 }
 
+
 function actividadesDispo($usuario){
     $conectar = conectar("gym");
     $select = "select name from activity where name not in (select activity from enroll where member='$usuario')";
@@ -78,7 +79,9 @@ function actividadesDispo($usuario){
     return $resultado;
 }
 
-
+function actualizarPlazas(){
+    
+}
 
 function totalActividades(){
     $conectar = conectar("gym");
