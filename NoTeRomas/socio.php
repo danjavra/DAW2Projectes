@@ -24,7 +24,7 @@
              <p><input type="hidden" name="idmember" value="<?php echo $idmember ?>"></p> 
                        <p>Actividad:</p>
                        <select type="select" name="activity">
-                   <?php  $actividadesDisp = actividadesDispo($usuario);
+                   <?php  $actividadesDisp = actividadesDispo($idmember);
                 
                 while($fila = mysqli_fetch_array($actividadesDisp)){
                 extract($fila);
@@ -40,8 +40,8 @@
             require_once 'bbdd.php';
             $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
             if ($resultado == "ok") {
-                actualizarPlazas($usuario);
-                consumoMensual($usuario);
+                //actualizarPlazas($usuario);
+                //consumoMensual($usuario);
                 echo "<p>Usuario inscrito en la actividad.</p>";
             } else {
                 echo $msg;

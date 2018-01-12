@@ -74,6 +74,7 @@ function actividades($pos){
 function actividadesDispo($usuario){
     $conectar = conectar("gym");
     $select = "select name from activity where name not in (select activity from enroll where member='$usuario')";
+    echo $select;
     $resultado = mysqli_query($conectar, $select);
     desconectar($conectar);
     return $resultado;
