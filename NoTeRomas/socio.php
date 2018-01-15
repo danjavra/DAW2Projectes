@@ -13,6 +13,7 @@
         session_start();
         $usuario=$_SESSION["user"];
         $idmember = getIdByName($usuario);
+        
         $date = date('Y-m-d H:i:s');
         ?>
         <h1>Página del Socio</h1>
@@ -39,8 +40,9 @@
         if (isset($_POST["enroll"])) {
             require_once 'bbdd.php';
             $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
+            $numcapacity = getCapacityName($_POST["activity"]);
             if ($resultado == "ok") {
-                //actualizarPlazas($usuario);
+                actualizarPlazas($_POST["activity"],$numcapacity);
                 //consumoMensual($usuario);
                 echo "<p>Usuario inscrito en la actividad.</p>";
             } else {
@@ -49,7 +51,7 @@
         }
         ?>
          <br>
-         <?php echo $idmember ?>
+        
          <h4>Coste mensual del total de las actividades:</h4>
     </body>
 </html>
