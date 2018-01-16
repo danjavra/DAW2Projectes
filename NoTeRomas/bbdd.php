@@ -73,21 +73,20 @@ function actividades($pos){
 
 function actividadesDispo($usuario){
     $conectar = conectar("gym");
-    $select = "select name from activity where name not in (select activity from enroll where member='$usuario')";
+    $select = "select name from activity where capacity>0 and name not in (select activity from enroll where member='$usuario')";
     echo $select;
     $resultado = mysqli_query($conectar, $select);
     desconectar($conectar);
     return $resultado;
 }
 
-/*function actualizarPlazas($actividadesDisp){
+function actualizarPlazas($activity,$numcapacity){
     $conectar = conectar("gym");
-    $select = "UPDATE `activity` SET `capacity`=`capacity`-1 WHERE name='$actividadesDisp'";
-    echo $select;
-    $resultado = mysqli_query($conectar, $select);
+    $update = "UPDATE `activity` SET `capacity`=$numcapacity-1 Where name='$activity'";
+    $resultado = mysqli_query($conectar, $update);
     desconectar($conectar);
     return $resultado;
-}*/
+}
 
 function totalActividades(){
     $conectar = conectar("gym");
@@ -125,3 +124,12 @@ function getIdByName($usuario){
     return $idmember;
 }
 
+function getCapacityName($actividades){
+     $conectar = conectar("gym");
+    $select = "select capacity from activity where name='$actividades'";
+    $resultado = mysqli_query($conectar, $select);
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    desconectar($conectar);
+    return $numcapacity;
+}
