@@ -39,8 +39,9 @@
         if (isset($_POST["enroll"])) {
             require_once 'bbdd.php';
             $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
+            //$resultado = actualizarPlazas($actividadesDisp);
             if ($resultado == "ok") {
-                //actualizarPlazas($usuario);
+                
                 //consumoMensual($usuario);
                 echo "<p>Usuario inscrito en la actividad.</p>";
             } else {
@@ -49,7 +50,7 @@
         }
         ?>
          <br>
-         <?php echo $idmember ?>
+         
          <h4>Coste mensual del total de las actividades:</h4>
     </body>
 </html>

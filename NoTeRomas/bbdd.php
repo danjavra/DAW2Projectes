@@ -80,9 +80,14 @@ function actividadesDispo($usuario){
     return $resultado;
 }
 
-function actualizarPlazas(){
-    
-}
+/*function actualizarPlazas($actividadesDisp){
+    $conectar = conectar("gym");
+    $select = "UPDATE `activity` SET `capacity`=`capacity`-1 WHERE name='$actividadesDisp'";
+    echo $select;
+    $resultado = mysqli_query($conectar, $select);
+    desconectar($conectar);
+    return $resultado;
+}*/
 
 function totalActividades(){
     $conectar = conectar("gym");
