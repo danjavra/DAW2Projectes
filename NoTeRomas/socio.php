@@ -38,20 +38,36 @@
         </form>
               <?php
         if (isset($_POST["enroll"])) {
-            require_once 'bbdd.php';
-            $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
-            $numcapacity = getCapacityName($_POST["activity"]);
-            if ($resultado == "ok") {
-                actualizarPlazas($_POST["activity"],$numcapacity);
-                //consumoMensual($usuario);
+            
+            $numCapacity = getCapacityName($_POST["activity"]);
+            
+            $numinscritos = getNumInscritos($_POST["activity"]);
+            echo $numCapacity;
+            echo "<br>";
+            echo $numinscritos;
+            
+            if($numCapacity>$numinscritos && $resultado == "ok"){
+                $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
                 echo "<p>Usuario inscrito en la actividad.</p>";
-            } else {
+   
+            } else if ($numCapacity<=$numinscritos) {
+                
+            echo "<p>No hay plazas disponibles</p>";
+            }else {
                 echo $msg;
             }
         }
         ?>
          <br>
-        
+         <p><a href="socio.php">Apuntarse a otra actividad</a></p>
+         <br>
          <h4>Coste mensual del total de las actividades:</h4>
+         <?php 
+         $sumaPrecios = sumaPreciosActividades($usuario);
+         echo $sumaPrecios
+                 
+         ?>
+         <br>
+         <p><a href="index.php">Página de inicio</a></p>
     </body>
 </html>
