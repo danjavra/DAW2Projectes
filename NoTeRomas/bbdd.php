@@ -139,9 +139,9 @@ function getNumInscritos($actividades){
     return $numinscritos;
 }
 
-function sumaPreciosActividades($usuario){
+function sumaPreciosActividades($idmember){
     $conectar = conectar("gym");
-    $select = "select SUM(price) as resultado from activity where name in (select activity from enroll where member='$usuario')";
+    $select = "select SUM(price) as resultado from activity where name in (select activity from enroll where member=$idmember)";
     $resultado = mysqli_query($conectar, $select);
     $fila = mysqli_fetch_array($resultado);
     extract($fila);

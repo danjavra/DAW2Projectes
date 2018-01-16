@@ -42,14 +42,13 @@
             $numCapacity = getCapacityName($_POST["activity"]);
             
             $numinscritos = getNumInscritos($_POST["activity"]);
-            echo $numCapacity;
-            echo "<br>";
-            echo $numinscritos;
+       
             
-            if($numCapacity>$numinscritos && $resultado == "ok"){
+            if($numCapacity>$numinscritos){
                 $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
+                $resultado == "ok";
                 echo "<p>Usuario inscrito en la actividad.</p>";
-   
+                
             } else if ($numCapacity<=$numinscritos) {
                 
             echo "<p>No hay plazas disponibles</p>";
@@ -61,12 +60,12 @@
          <br>
          <p><a href="socio.php">Apuntarse a otra actividad</a></p>
          <br>
-         <h4>Coste mensual del total de las actividades:</h4>
-         <?php 
-         $sumaPrecios = sumaPreciosActividades($usuario);
-         echo $sumaPrecios
-                 
+            <?php 
+         $sumaPrecios = sumaPreciosActividades($idmember);
+        
          ?>
+         <p>Coste mensual del total de las actividades:</p> <h4><?php echo $sumaPrecios ?> €/mes</h4>
+       
          <br>
          <p><a href="index.php">Página de inicio</a></p>
     </body>
