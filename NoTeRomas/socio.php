@@ -11,18 +11,17 @@
         <?php
         require_once 'bbdd.php';
         session_start();
-        $usuario=$_SESSION["user"];
-        $idmember = getIdByName($usuario);
-        
+        $idmember=$_SESSION["user"];
+        $username = getNameById($idmember);
         $date = date('Y-m-d H:i:s');
         ?>
         <h1>Página del Socio</h1>
-        <h2>Bienvenido <?php echo ucfirst($usuario); ?></h2>
+        <h2>Bienvenido <?php echo ucfirst($username); ?></h2>
         
              <h3>Inscribirse a una actividad</h3>
              <form action="" method="post">
               
-             <p><input type="hidden" name="idmember" value="<?php echo $idmember ?>"></p> 
+              
                        <p>Actividad:</p>
                        <select type="select" name="activity">
                    <?php  $actividadesDisp = actividadesDispo($idmember);
@@ -45,7 +44,7 @@
        
             
             if($numCapacity>$numinscritos){
-                $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$_POST["idmember"]);
+                $resultado = apuntarActividad($_POST["activity"], $_POST["date"],$idmember);
                 $resultado == "ok";
                 echo "<p>Usuario inscrito en la actividad.</p>";
                 

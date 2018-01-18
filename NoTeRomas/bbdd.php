@@ -10,9 +10,9 @@ function desconectar($conexion) {
     mysqli_close($conexion);
 }
 
-function loginUser($name, $password) {
+function loginUser($idmember, $password) {
     $con = conectar("gym");
-    $query = "select pass from member where name='$name'";
+    $query = "select pass from member where idmember='$idmember'";
     $resultado = mysqli_query($con, $query);
     $filas = mysqli_num_rows($resultado);
     desconectar($con);
@@ -26,9 +26,9 @@ function loginUser($name, $password) {
     }
 }
 
-function insertUser($name, $pass, $age, $type) {
+function insertUser($name, $pass, $age) {
     $conexion = conectar();
-    $insert = "insert into member values (null,'$pass', '$name', $age, 0)";
+    $insert = "insert into member values (null,'$pass', '$name', $age)";
     if (mysqli_query($conexion, $insert)) {
         $msg = "ok";
     } else {
@@ -52,15 +52,6 @@ function apuntarActividad($activity, $date, $idmember){
     return $msg;
 }
 
-function selectTypeUser($username){
-    $conectar = conectar("gym");
-    $select = "select tipo from member where name='$username'";
-    $resultado = mysqli_query($conectar, $select);
-    $fila = mysqli_fetch_array($resultado);
-    extract($fila);
-    desconectar($conectar);
-    return $tipo;
-}
 
 function actividades($pos){
     $conectar = conectar("gym");
@@ -69,8 +60,6 @@ function actividades($pos){
     desconectar($conectar);
     return $resultado;
 }
-
-
 
 
 function actividadesDispo($usuario){
@@ -109,14 +98,14 @@ function totalSocios(){
     return $rows;
 }
 
-function getIdByName($usuario){
+function getNameById($idmember){
     $conectar = conectar("gym");
-    $select = "select idmember from member where name='$usuario'";
+    $select = "select name from member where idmember=$idmember";
     $resultado = mysqli_query($conectar, $select);
     $fila = mysqli_fetch_array($resultado);
     extract($fila);
     desconectar($conectar);
-    return $idmember;
+    return $name;
 }
 
 function getCapacityName($actividades){
