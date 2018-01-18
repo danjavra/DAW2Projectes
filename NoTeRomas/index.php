@@ -13,18 +13,20 @@
         <a style="margin: 50px 40px;" href="registro.php" class="registrar1">Registrarse</a>
         <a style="margin: 50px 40px;" href="login.php" class="login1">Log In</a>
         <h3>Actividades del centro</h3>
+        <!--Mostramos en una tabla el resultado de la consulta-->
         <table style="width:100%; border-style: double; text-align: center;">
             <tr><th>Nombre</th><th>Precio</th><th>Capacidad</th></tr>
         <?php
+        //Invocamos la pagina bbdd para usar las funciones que hemos puesto en ella y definimos una variable posicion y la inicializamos con valor 0.
         require_once 'bbdd.php';
         $posicion = 0;
-
-
+        
         if (isset($_GET["posicion"])) {
             $posicion = $_GET["posicion"];
         } else {
             $posicion = 0;
         }
+        //definimos dos variables que ejecutan funciones con consultas sobre las actividades, pudiendo comparar el total con la posición de manera que los podamos listar.
         $actividades = actividades($posicion);
         $total = totalActividades();
             while($fila = mysqli_fetch_array($actividades)){
