@@ -1,15 +1,18 @@
 <?php
 
+//Función que conecta a la base de datos para poder hacer las consultas.
 function conectar() {
     $con = mysqli_connect("localhost", "root", "", "gym")
             or die("No se ha podido conectar con la BBDD.");
     return $con;
 }
 
+//Función que desconecta la pagina de la base de datos.
 function desconectar($conexion) {
     mysqli_close($conexion);
 }
 
+//Función que registra la id de usuario y la contraseña, hace una consulta en la base de datos si existe en ella y devuelve un resultado booleano.
 function loginUser($idmember, $password) {
     $con = conectar("gym");
     $query = "select pass from member where idmember='$idmember'";
@@ -26,6 +29,7 @@ function loginUser($idmember, $password) {
     }
 }
 
+//Funcion para registrar nuevos usuarios, inserta los datos que metemos en el formulario.
 function insertUser($name, $pass, $age) {
     $conexion = conectar();
     $insert = "insert into member values (null,'$pass', '$name', $age)";
@@ -39,6 +43,7 @@ function insertUser($name, $pass, $age) {
     return $msg;
 }
 
+//Función que registra las actividades que quiere hacer un usuario insertando los datos que hemos puesto en el formulario y el día en que lo ha hecho.
 function apuntarActividad($activity, $date, $idmember){
     $conexion = conectar();
     $insert = "insert into enroll values ($idmember,'$activity','$date' )";
@@ -52,7 +57,7 @@ function apuntarActividad($activity, $date, $idmember){
     return $msg;
 }
 
-
+//Función para listar, muestra los demás contenidos a partir de la posición que le hemos predefinido hasta el limite que le hemos impuesto.
 function actividades($pos){
     $conectar = conectar("gym");
     $select = "select * from activity limit ".$pos.", 5";
@@ -61,7 +66,7 @@ function actividades($pos){
     return $resultado;
 }
 
-
+//Función que muestra las actividades en las que el usuario no se ha apuntado, compara la tabla activity y la tabla member mostrando solo los valores en las que no conste la idmember que le decimos
 function actividadesDispo($usuario){
     $conectar = conectar("gym");
     $select = "select name from activity where name not in (select activity from enroll where member='$usuario')";
@@ -71,7 +76,7 @@ function actividadesDispo($usuario){
     return $resultado;
 }
 
-
+//Función que muestra todo el contenido de la tabla activity
 function totalActividades(){
     $conectar = conectar("gym");
     $select = "select * from activity";
@@ -81,6 +86,7 @@ function totalActividades(){
     return $rows;
 }
 
+//Función para listar, muestra los demás contenidos a partir de la posición que le hemos predefinido hasta el limite que le hemos impuesto.
 function socios($pos){
     $conectar = conectar("gym");
     $select = "select * from member limit ".$pos.", 10";
@@ -89,6 +95,7 @@ function socios($pos){
     return $resultado;
 }
 
+//Función que muestra todo el contenido de la tabla member
 function totalSocios(){
     $conectar = conectar("gym");
     $select = "select * from member";
@@ -98,6 +105,7 @@ function totalSocios(){
     return $rows;
 }
 
+//Funcion que muestra el nombre a partir de la idmember que le pasamos
 function getNameById($idmember){
     $conectar = conectar("gym");
     $select = "select name from member where idmember=$idmember";
@@ -108,6 +116,7 @@ function getNameById($idmember){
     return $name;
 }
 
+//Función que muestra el numero máximo de alumnos que se puedan apuntar a la actividad seleccionada
 function getCapacityName($actividades){
     $conectar = conectar("gym");
     $select = "select capacity from activity where name='$actividades'";
@@ -118,6 +127,7 @@ function getCapacityName($actividades){
     return $capacity;
 }
 
+//Función que muestra el numero total de inscritos que estan apuntados a la actividad seleccionada
 function getNumInscritos($actividades){
     $conectar = conectar("gym");
     $select = "select count(*) as numinscritos from enroll where activity='$actividades'";
@@ -128,6 +138,7 @@ function getNumInscritos($actividades){
     return $numinscritos;
 }
 
+//Función que suma las cantidades a pagar de las actividades en las que se ha registrado el usuario, buscando si el nombre de la actividad consta en la tabla enroll y va asociado a la idmember del usario
 function sumaPreciosActividades($idmember){
     $conectar = conectar("gym");
     $select = "select SUM(price) as resultado from activity where name in (select activity from enroll where member=$idmember)";
