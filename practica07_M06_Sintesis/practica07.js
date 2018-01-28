@@ -13,6 +13,9 @@ var nombre = urlWeb.substr(indexBarra+1);
 var os = navigator.appVersion;
 var browser = navigator.appName;
 var appcode = navigator.appCodeName;
+var platform = navigator.platform;
+
+
 
 var divLista1 = document.getElementById("listaPropiedadesPantalla");
 divLista1.innerHTML = "<ul>"+
@@ -30,6 +33,7 @@ var divLista2 = document.getElementById("listaPropiedadesNavegador");
 divLista2.innerHTML = "<ul>"+
         "<li>"+"Navegador web: "+browser+"</li>"+
         "<li>"+"Codigo Navegador Web: "+appcode+"</li>"+
+        "<li>"+"Plataforma del Navegador Web: "+platform+"</li>"+
         "<li>"+"Navegador Web: "+os+"</li>"+
         "</ul>";
 
