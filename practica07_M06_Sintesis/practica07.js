@@ -45,21 +45,16 @@ divLista3.innerHTML = "<ul>"+
         "</ul>";
 
 var divLista4 = document.getElementById("glyphIcon1");
-divLista4.innerHTML = 
-        "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-camera'></span></a>";
+divLista4.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-camera'></span></a>";
 
 var divLista5 = document.getElementById("glyphIcon2");
-divLista5.innerHTML = 
-        "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-globe'></span></a>";
+divLista5.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-globe'></span></a>";
 
 var divLista6 = document.getElementById("glyphIcon3");
-divLista6.innerHTML = 
-        "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-film'></span></a>";
+divLista6.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-film'></span></a>";
 
 var divLista7 = document.getElementById("glyphIcon4");
-divLista7.innerHTML = 
-        "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-headphones'></span></a>";
+divLista7.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-headphones'></span></a>";
 
 var divLista8 = document.getElementById("glyphIcon5");
-divLista8.innerHTML = 
-        "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-gift'></span></a>";
+divLista8.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-gift'></span></a>";
