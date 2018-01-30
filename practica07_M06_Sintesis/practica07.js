@@ -58,3 +58,8 @@ divLista7.innerHTML = "<a style='text-align: center; font-size: 40px'><span clas
 
 var divLista8 = document.getElementById("glyphIcon5");
 divLista8.innerHTML = "<a style='text-align: center; font-size: 40px'><span class='glyphicon glyphicon-gift'></span></a>";
+
+document.getElementById("juegoprueba").addEventListener('click', function(){
+    window.open('juegoPreguntas.html', null,`height=${valorScreenHeight/2}, width=${valorScreenWidth/2}, left=500%, top=200%` );
+    document.getElementById("juegoprueba").style.display="none";
+});
